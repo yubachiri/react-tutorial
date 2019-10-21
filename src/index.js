@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
+// ひとマス
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -10,6 +11,10 @@ function Square(props) {
   )
 }
 
+// マスを並べるボード
+// prop:
+//   squares: 要素9個のあれ
+//   onClick: マスクリック時の関数
 class Board extends React.Component {
   renderSquare(i) {
     return (
@@ -43,6 +48,11 @@ class Board extends React.Component {
   }
 }
 
+// ゲームを管理するコンポーネント
+// state:
+//   history: 9要素のゲーム内容を全手番保持する
+//   stepNumber: 手番
+//   xIsNext: 入力を待っている手番がどっちのXか否か
 class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -55,6 +65,7 @@ class Game extends React.Component {
     }
   }
 
+  // iにはクリックされたマスのindexが入るようになってる
   handleClick(i) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
